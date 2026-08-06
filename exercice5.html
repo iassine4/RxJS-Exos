@@ -17,8 +17,8 @@
 
         const input = document.querySelector('#recherche');
         const recherche$ = fromEvent(input, 'input').pipe(
-            map((event) => event.target.value),
-            debounceTime(300),
+            map((event) => event.target.value.trim().toLowerCase()),
+            debounceTime(500),
             distinctUntilChanged());
 
             recherche$.subscribe((valeur) => {

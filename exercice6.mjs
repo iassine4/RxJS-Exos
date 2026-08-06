@@ -12,7 +12,7 @@ function rechercherAPI(terme) {
 const recherches$ = of('ang', 'angular');
 
 recherches$.pipe(
-  mergeMap((terme) => rechercherAPI(terme))
+  switchMap((terme) => rechercherAPI(terme))
 ).subscribe((resultat) => {
   console.log(resultat);
 });

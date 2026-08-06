@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 5 RxJS</title>
+</head>
+
+<body>
+
+    <input id="recherche" type="text" placeholder="Rechercher...">
+
+    <script src="https://unpkg.com/rxjs@7/dist/bundles/rxjs.umd.min.js"></script>
+    <script>
+        const { fromEvent } = rxjs;
+        const { map, debounceTime, distinctUntilChanged } = rxjs.operators;
+
+        const input = document.querySelector('#recherche');
+        const recherche$ = fromEvent(input, 'input').pipe(
+            map((event) => event.target.value),
+            debounceTime(300),
+            distinctUntilChanged());
+
+            recherche$.subscribe((valeur) => {
+                console.log(valeur);
+            });
+    </script>
+</body>
+
+</html>
